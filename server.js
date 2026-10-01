@@ -26,9 +26,12 @@ function createGameServer() {
   const httpServer = createHttpServer(app);
   const io = new Server(httpServer, { maxHttpBufferSize: 16 * 1024 });
   const rooms = new Map();
-  app.get('/host', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'host.html')));
+  const publicDirectory = path.join(__dirname, 'public');
+  // An explicit root keeps hidden deployment ancestors (such as .nodeapp)
+  // out of Express's dotfile check without allowing hidden public files.
+  app.get('/host', (_req, res) => res.sendFile('host.html', { root: publicDirectory }));
   app.get('/health', (_req, res) => res.json({ ok: true }));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(publicDirectory));
 
   function newCode() {
     if (rooms.size >= 1000) fail('The server is full. Please try again later.');

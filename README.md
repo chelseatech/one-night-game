@@ -34,7 +34,7 @@ Run the tests:
 npm test
 ```
 
-Tests start an isolated server on an ephemeral port and exercise real Socket.IO clients: a complete five-round game, private answers, scoring, validation, stale actions, reconnects, late joins, and disconnected voters. `/health` returns `{ "ok": true }` for a basic server health check.
+Tests start isolated servers on ephemeral ports and exercise real Socket.IO clients: a complete five-round game, private answers, scoring, validation, stale actions, reconnects, late joins, and disconnected voters. A deployment regression test checks the host page under SiteGround’s hidden `.nodeapp` directory while confirming that hidden public files remain blocked. `/health` returns `{ "ok": true }` for a basic server health check.
 
 ## How to play
 
@@ -59,6 +59,7 @@ public/
   style.css          Responsive dark game-show styling
 test/
   game.test.js       Node test runner + Socket.IO integration tests
+  deployment.test.js Host/assets under a hidden deployment directory
 package.json         npm start / npm test / npm run build and dependencies
 package-lock.json    Reproducible dependency installation
 ```
