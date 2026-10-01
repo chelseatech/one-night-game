@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11120f">
+  <title>Who Said That? — Host</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body data-role="host">
+  <header class="site-header">
+    <a class="brand" href="/host" aria-label="Who Said That host">WHO SAID <span>THAT?</span><i aria-hidden="true">?</i></a>
+    <div class="header-right"><span class="tag">HOST SCREEN</span><span id="connection" class="connection" role="status">Connecting</span></div>
+  </header>
+  <main class="host-shell">
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="room-strip" class="room-strip"></div>
+    <div class="host-layout">
+      <div id="screen"></div>
+      <aside id="host-sidebar" aria-label="Players and scores"></aside>
+    </div>
+    <p id="error" class="error" role="alert" hidden></p>
+  </main>
+  <footer class="site-footer"><span>GOOD FRIENDS. QUESTIONABLE ANSWERS.</span><span>ONE ROOM. FIVE ROUNDS. NO FILTER.</span></footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11120f">
+  <title>Who Said That? — Play</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body data-role="player">
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Who Said That home">WHO SAID <span>THAT?</span><i aria-hidden="true">?</i></a>
+    <span id="connection" class="connection" role="status">Connecting</span>
+  </header>
+  <main class="player-shell">
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="screen"></div>
+    <div id="player-scores"></div>
+    <p id="error" class="error" role="alert" hidden></p>
+  </main>
+  <footer class="site-footer"><span>GOOD FRIENDS. QUESTIONABLE ANSWERS.</span><a href="/host">Host a game <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>
