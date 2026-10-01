@@ -10,7 +10,7 @@ Use **Node.js 20 or newer** (Node.js 24 LTS recommended) and npm:
 npm ci
 ```
 
-Only Express and Socket.IO are runtime dependencies. Socket.IO’s client library is served by the same server; no CDN, frontend build, database, or environment secrets are needed. The Socket.IO client dev dependency is used for integration tests.
+Only Express and Socket.IO are runtime dependencies. Socket.IO’s client library is served by the same server; no CDN, frontend compilation, database, or environment secrets are needed. The Socket.IO client dev dependency is used for integration tests.
 
 ## Run locally
 
@@ -59,7 +59,7 @@ public/
   style.css          Responsive dark game-show styling
 test/
   game.test.js       Node test runner + Socket.IO integration tests
-package.json         npm start / npm test and minimal dependencies
+package.json         npm start / npm test / npm run build and dependencies
 package-lock.json    Reproducible dependency installation
 ```
 
@@ -103,6 +103,8 @@ Room state exists only in memory. Restarting the Node process loses all rooms. C
 ## Deployment on SiteGround Node.js hosting
 
 Deploy these files to your Node.js application directory, select Node.js 20+ (preferably 24), install runtime dependencies with `npm ci --omit=dev`, and set the startup file to **`server.js`** (or run `npm start`, depending on the hosting panel). Let the hosting service provide `PORT`. Use your actual domain and HTTPS to open `/host` and `/`.
+
+In Site Tools → Node.js Deployment Options, choose **Express**, branch **main**, and package manager **npm**. In the build command field, enter **`run build`** after its prefilled `npm` prefix. Leave the output directory blank to use the repository root. The full command is `npm run build`: it checks the syntax of the server, prompts, and browser JavaScript, then exits. The application serves its existing files directly, so this script does not generate a `dist` directory. Keep `npm start` as the application startup command.
 
 The application needs a **single persistent Node process** and the hosting reverse proxy must forward HTTP and Socket.IO traffic at `/socket.io/`. Socket.IO supports both HTTP long-polling and WebSocket upgrades; enable WebSocket upgrades where supported. Check both transport support and Node.js application availability for your specific SiteGround plan; static-only/PHP hosting cannot run this server. No SiteGround-specific SDK or configuration is required by the application.
 

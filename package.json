@@ -6,6 +6,7 @@
   "main": "server.js",
   "engines": { "node": ">=20" },
   "scripts": {
+    "build": "node --check server.js && node --check prompts.js && node --check public/app.js",
     "start": "node server.js",
     "test": "node --test"
   },
